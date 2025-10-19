@@ -1,0 +1,307 @@
+# CLAUDE FILE UPLOAD VERIFICATION KIT
+
+Version 1.0 | October 18, 2025
+
+## BACKGROUND
+
+On October 17-18, 2025, new file upload capabilities were discovered on Claude.ai
+including support for video, audio, archives, and expanded file limits. This kit
+helps verify if these features are available in your region/account.
+
+## DISCOVERED FEATURES
+
+✓ Video uploads (.mp4, .mov, .avi)
+✓ Audio uploads (.mp3, .m4a, .wav)
+✓ Archive uploads (.zip, .tar, .gz)
+✓ Document uploads (.pages, .docx, .srt)
+✓ File limit expansion (5 → 14+ files per conversation)
+✓ ZIP content parsing (can read files inside archives)
+✓ Video metadata extraction (duration, resolution, fps)
+✓ MCP connector ecosystem (Hugging Face, GitHub, Google Drive, Invideo)
+✓ Cross-conversation search tools
+
+## REQUIREMENTS
+
+Account: Claude Pro recommended (free tier untested)
+Platform: Desktop web browser (claude.ai)
+- Mobile web works but may have limitations
+- Native mobile apps may not have features yet
+Browser: Any modern browser (Chrome, Safari, Firefox, Edge)
+Mode: Private/Incognito browsing recommended for clean testing
+
+## TEST FILES INCLUDED
+
+1. test_basic.txt (200 bytes)
+- Simple text file for basic upload verification
+1. test_zip_parsing.zip (1.6 KB)
+- Contains: README.txt, index.html, data.json
+- Tests ZIP extraction and content parsing
+1. (User supplies) test_video.mp4 (under 30MB)
+- Any short video clip for metadata extraction testing
+- Recommended: 10-30 seconds, common format
+
+# VERIFICATION SEQUENCE
+
+## TEST 1: BASIC FILE UPLOAD
+
+Goal: Verify Claude accepts file uploads
+
+Steps:
+
+1. Open claude.ai in your browser
+1. Start a new conversation
+1. Click the attachment icon (paperclip/plus button)
+1. Upload test_basic.txt
+1. Ask: "Can you read this file and tell me what it says?"
+
+Expected Result:
+✓ File uploads successfully
+✓ Claude reads and summarizes content
+✓ Claude confirms test date (October 18, 2025)
+
+If this fails: File uploads are not available in your region/account yet
+
+## TEST 2: ZIP CONTENT PARSING
+
+Goal: Verify Claude can extract and read files inside ZIP archives
+
+Steps:
+
+1. Start a new conversation (or continue from Test 1)
+1. Upload test_zip_parsing.zip
+1. Ask: "List all files in this ZIP"
+1. Ask: "What is the magic_number in the data.json file?"
+1. Ask: "How many files does the README say are in this ZIP?"
+
+Expected Results:
+✓ Claude lists: README.txt, index.html, data.json
+✓ Claude reports magic_number = 42
+✓ Claude reports 3 files mentioned in README
+
+If this fails: ZIP uploads accepted but not fully parsed
+
+## TEST 3: VIDEO METADATA EXTRACTION
+
+Goal: Verify Claude can process video files and extract metadata
+
+Requirements:
+
+- You need to provide your own short video (under 30MB)
+- MP4 format recommended
+- 10-30 seconds long is ideal
+
+Steps:
+
+1. Start a new conversation
+1. Upload your test video
+1. Ask: "What are the technical specs of this video?"
+1. Ask: "How long is the video and what resolution is it?"
+
+Expected Results:
+✓ Claude reports accurate duration
+✓ Claude reports resolution (e.g., 1920x1080)
+✓ Claude reports frame rate if available
+✓ Claude confirms audio presence/absence
+
+Note: Claude cannot hear audio or watch video content, but can:
+
+- Extract metadata (duration, resolution, fps, codec)
+- Sample and analyze individual frames
+- Read visual elements (text, UI, objects in frames)
+
+## TEST 4: CONNECTOR INDEPENDENCE
+
+Goal: Verify file uploads work regardless of connector state
+
+Steps:
+
+1. Go to Settings → Connectors
+1. Note which connectors are currently enabled
+1. Disconnect ALL connectors (GitHub, Google Drive, etc.)
+1. Return to a new conversation
+1. Upload any test file (test_basic.txt works fine)
+1. Verify Claude can still process it
+
+Expected Result:
+✓ File uploads work with no connectors enabled
+✓ File processing is native functionality
+
+Conclusion: File uploads are NOT dependent on MCP connectors
+
+## TEST 5: FILE LIMIT TESTING
+
+Goal: Determine maximum number of simultaneous file uploads
+
+Steps:
+
+1. Start a new conversation
+1. Try uploading 5 files at once
+1. If successful, try 10 files
+1. If successful, try 14 files
+1. Note where it stops accepting
+
+Expected Results (as of Oct 18, 2025):
+✓ Originally: 5 file limit
+✓ Increased to: 6 files (observed during rollout)
+✓ Further increased to: 14 files
+✓ May vary by account/region
+
+Your result: _____ files maximum
+
+## TEST 6: PRIVATE BROWSING VERIFICATION
+
+Goal: Confirm features work in clean environment (no cache/cookies)
+
+Steps:
+
+1. Open Private/Incognito browser window
+1. Go to claude.ai
+1. Log in
+1. Repeat Test 1 (basic file upload)
+
+Expected Result:
+✓ Features work in private browsing
+✓ Confirms server-side functionality, not browser-cached
+
+If this fails: Features may be experimental/unstable
+
+# TROUBLESHOOTING
+
+Issue: Can’t find file upload button
+Solution:
+
+- Check you’re on claude.ai web version (not mobile app)
+- Look for paperclip icon or plus button near message input
+- Try refreshing the page
+
+Issue: File upload button is grayed out
+Solution:
+
+- Features may not be rolled out to your region yet
+- Try private browsing mode
+- Try different browser
+- Check if you’re on Pro tier
+
+Issue: Files upload but Claude says "I cannot process this file type"
+Solution:
+
+- Feature may be partially rolled out
+- File type might genuinely not be supported yet
+- Try a different file type
+
+Issue: ZIP uploads but content not parsed
+Solution:
+
+- This is a known limitation in early rollout
+- Feature may be being tested incrementally
+- Try smaller ZIP files (<5MB)
+
+Issue: Video uploads but no metadata extracted
+Solution:
+
+- Claude may accept but not process video yet
+- Try more common formats (MP4, MOV)
+- Check file size (under 30MB recommended)
+
+# REPORTING YOUR RESULTS
+
+If you successfully verify these features:
+
+1. Note your account type (Pro/Free)
+1. Note your location/region
+1. Note which tests passed/failed
+1. Share on r/ClaudeAI with [Verification] tag
+
+If features don’t work for you:
+
+- This is likely a phased rollout
+- Features may arrive in your region soon
+- Your report helps map the rollout pattern
+
+# TECHNICAL DETAILS
+
+Discovery Timeline:
+
+- October 17, 2025, 7:58 PM EST: First features observed
+- October 18, 2025, 12:15 AM EST: File limit increase documented
+- Features appeared silently with no official announcement
+
+Platform Specifics:
+
+- Desktop web: Full functionality
+- Mobile web: Most functionality (some UI differences)
+- Mobile apps: Limited/no functionality (as of Oct 18)
+
+Model: Claude Sonnet 4.5
+API: Features may not be available via API yet
+Account: Tested on Pro tier, free tier status unknown
+
+Known Working:
+
+- Safari iOS (mobile web)
+- Chrome (desktop)
+- Firefox (desktop)
+- Private/Incognito modes
+
+Connector Ecosystem:
+
+- Google Drive (Connect for Drive search/fetch)
+- GitHub (Connect for repo integration)
+- Hugging Face (Custom MCP connector)
+- Invideo (Custom MCP connector)
+- Gmail (Available but not required)
+- Google Calendar (Available but not required)
+- Canva (Available but not required)
+
+# ADDITIONAL NOTES
+
+Privacy:
+
+- Test files contain no personal information
+- Safe to share and upload publicly
+- Create your own test video to protect privacy
+
+IP Protection:
+
+- Do not upload proprietary code or documents
+- Do not share sensitive project files
+- Use generic test content only
+
+Best Practices:
+
+- Test in private browsing first
+- Document your results with screenshots
+- Note any error messages exactly
+- Record date/time of testing
+
+# VERSION HISTORY
+
+v1.0 (October 18, 2025)
+
+- Initial release
+- Based on discovery documentation from Oct 17-18, 2025
+- Includes basic verification tests
+- Community-contributed
+
+# CREDITS
+
+Discovery: Early_Experience4553 (Reddit: r/ClaudeAI)
+Methodology: Community collaborative verification
+Special Thanks: OrchidSpecial1613 for verification checklist
+
+This is a community-created tool to document and verify
+undocumented Claude features during their silent rollout.
+
+# LICENSE
+
+This verification kit is released as public domain.
+Use freely. Share widely. Modify as needed.
+Attribution appreciated but not required.
+
+-----
+
+For questions, updates, or to report results:
+Reddit: r/ClaudeAI
+Tag: [Verification] or [File Upload]
+
+Last Updated: October 18, 2025
