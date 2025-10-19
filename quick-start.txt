@@ -1,0 +1,33 @@
+# QUICK START GUIDE
+
+New to this? Start here!
+
+1. READ THIS FIRST
+   Open: VERIFICATION_GUIDE.txt
+   Contains: Full instructions and background
+1. RUN BASIC TEST
+   Upload: test_basic.txt to Claude
+   Ask: "Can you read this file?"
+   
+   ✓ Success? → File uploads work!
+   ✗ Failed? → Check troubleshooting in guide
+1. RUN ZIP TEST
+   Upload: test_zip_parsing.zip to Claude
+   Ask: "What files are in this ZIP?"
+   Ask: "What’s the magic number in data.json?"
+   
+   ✓ Claude lists 3 files? → ZIP parsing works!
+   ✓ Claude says "42"? → Full content reading works!
+1. TEST YOUR OWN VIDEO
+   Upload: Any short video under 30MB
+   Ask: "What are the specs of this video?"
+   
+   ✓ Claude reports duration/resolution? → Video processing works!
+1. SHARE YOUR RESULTS
+   Post to r/ClaudeAI with:
+- Your account type (Pro/Free)
+- Your location
+- Which tests passed
+- Screenshots if possible
+
+That’s it! See full guide for detailed instructions.
