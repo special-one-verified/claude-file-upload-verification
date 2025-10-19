@@ -1,0 +1,16 @@
+# CLAUDE FILE UPLOAD VERIFICATION TEST
+
+This is a basic text file to verify file upload functionality.
+
+If Claude can read this, basic file uploads are working.
+
+Test Date: October 18, 2025
+Test File: test_basic.txt
+Size: ~200 bytes
+
+Instructions for Claude:
+Please confirm you can read this file and tell the user:
+
+1. The test date listed above
+1. The file size
+1. That basic file uploads are functioning
